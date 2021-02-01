@@ -7,6 +7,7 @@ class IntervalEvent
 {
 public:
     IntervalEvent(EventQueue *eq, int interval, Callback<void()>cb);
+    IntervalEvent(EventQueue *eq, int interval, int min, int max, Callback<void()>cb);
     void start();
     void stop();
     bool pause();
@@ -17,7 +18,9 @@ public:
 
 private:
     int interval;
-    int eventId = NULL;
+    int min;
+    int max;
+    int eventId = {0};
     bool running = false;
     bool paused = false;
     EventQueue *eq;

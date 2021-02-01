@@ -2,7 +2,26 @@
 
 IntervalEvent::IntervalEvent(
     EventQueue *eq, int interval,
-    Callback<void(void)> cb) : eq(eq), interval(interval), cb(cb)
+    Callback<void(void)> cb) : 
+    eq(eq), 
+    interval(interval), 
+    min(interval),
+    max(interval),
+    cb(cb)
+{
+}
+
+IntervalEvent::IntervalEvent(
+    EventQueue *eq, 
+    int interval, 
+    int min, 
+    int max, 
+    Callback<void()>cb) : 
+    eq(eq), 
+    interval(interval), 
+    min(min),
+    max(max),
+    cb(cb)
 {
 }
 
@@ -49,6 +68,8 @@ bool IntervalEvent::isPaused() { return this->paused; }
 
 void IntervalEvent::setInterval(int interval)
 {
+    if(interval >= min && interval <= max){
     this->interval = interval;
-    this->start();
+    // this->start();
+    }
 }
