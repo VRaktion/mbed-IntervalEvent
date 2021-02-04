@@ -10,6 +10,7 @@ public:
     IntervalEvent(EventQueue *eq, int interval, int min, int max, Callback<void()>cb);
     void start();
     void stop();
+    void restart();
     bool pause();
     bool resume();
     bool isRunning();

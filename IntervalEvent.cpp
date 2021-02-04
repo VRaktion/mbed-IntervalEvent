@@ -42,6 +42,12 @@ void IntervalEvent::stop()
     this->running = false;
 }
 
+void IntervalEvent::restart()
+{
+    this->stop();
+    this->start();
+}
+
 bool IntervalEvent::pause()
 {
     if (this->running)
@@ -70,6 +76,8 @@ void IntervalEvent::setInterval(int interval)
 {
     if(interval >= min && interval <= max){
     this->interval = interval;
-    // this->start();
+        if(this->running){
+            this->restart();
+        }
     }
 }
